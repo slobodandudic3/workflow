@@ -3,6 +3,7 @@ package com.slober.workflow.service;
 import com.slober.workflow.model.User;
 import com.slober.workflow.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import com.slober.workflow.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -21,5 +22,26 @@ public class UserService {
 
     public User createUser(User user) {
         return userRepository.save(user);
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User with id " + id + " not found"));
+    }
+
+    public User updateUser(Long id, User updateUser){
+        User existingUser = getUserById(id);
+
+        existingUser.setFirstName(updateUser.getFirstName());
+        existingUser.setLastName(updateUser.getLastName());
+        existingUser.setEmail(updateUser.getEmail());
+
+        return userRepository.save(existingUser);
+    }
+
+    public void deleteUser(Long id){
+        User user = getUserById(id);
+        userRepository.delete(user);
     }
 }

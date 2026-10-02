@@ -11,3 +11,29 @@ Content-Type: application/json
   "lastName": "Markovic",
   "email": "marko@example.com"
 }
+
+### Create another user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "Jovanovic",
+  "email": "ana@example.com"
+}
+
+### Update user
+PUT http://localhost:8080/api/users/2
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "Petrovic",
+  "email": "ana.petrovic@example.com"
+}
+
+### Delete user
+DELETE http://localhost:8080/api/users/2
+
+### Get deleted user
+GET http://localhost:8080/api/users/2

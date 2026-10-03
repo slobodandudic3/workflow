@@ -37,3 +37,79 @@ DELETE http://localhost:8080/api/users/2
 
 ### Get deleted user
 GET http://localhost:8080/api/users/2
+
+### Create user using DTO
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Nikola",
+  "lastName": "Nikolic",
+  "email": "nikola@example.com"
+}
+
+
+### Korinsik ne moze sam da setuje id, dodeljuje se automatski
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "id": 999,
+  "firstName": "Petar",
+  "lastName": "Petrovic",
+  "email": "petar@example.com"
+}
+
+### Create valid user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Jovan",
+  "lastName": "Jovanovic",
+  "email": "jovan@example.com"
+}
+
+### Create invalid user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "J",
+  "email": "banana"
+}
+
+
+### Get invalid user ID
+GET http://localhost:8080/api/users/999
+
+### Same email address test
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Milan",
+  "lastName": "Milic",
+  "email": "milan@example.com"
+}
+
+### Update user
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "Marko",
+  "lastName": "Markovic",
+  "email": "marko.novi@example.com"
+}
+
+### Update user with invalid data
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "M",
+  "email": "banana"
+}

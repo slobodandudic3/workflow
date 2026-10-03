@@ -1,6 +1,8 @@
 package com.slober.workflow.controller;
 
 
+import com.slober.workflow.dto.UserRequest;
+import jakarta.validation.Valid;
 import com.slober.workflow.model.User;
 import com.slober.workflow.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -16,35 +18,37 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    public User createUser(@Valid @RequestBody UserRequest request) {
+        return userService.createUser(request);
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id){
+    public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User updateUser(@PathVariable Long id, @RequestBody User user){
-        return userService.updateUser(id, user);
+    public User updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserRequest request) {
+        return userService.updateUser(id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long id){
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 }

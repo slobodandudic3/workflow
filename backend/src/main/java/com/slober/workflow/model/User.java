@@ -14,6 +14,7 @@ public class User {
 
     private String lastName;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
     public Long getId() {

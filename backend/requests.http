@@ -113,3 +113,68 @@ Content-Type: application/json
   "lastName": "M",
   "email": "banana"
 }
+
+### Create project
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "name": "WorkFlow",
+  "description": "Full-stack project management application",
+  "ownerId": 1
+}
+
+### Create project with nonexistent owner
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "name": "Test Project",
+  "description": "Testing invalid owner",
+  "ownerId": 99999
+}
+
+### Get all projects
+GET http://localhost:8080/api/projects
+
+### Get project by ID
+GET http://localhost:8080/api/projects/1
+
+### Get nonexistent project
+GET http://localhost:8080/api/projects/99999
+
+### Create another project
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "name": "Portfolio Website",
+  "description": "Personal portfolio project",
+  "ownerId": 1
+}
+
+### Update project
+PUT http://localhost:8080/api/projects/1
+Content-Type: application/json
+
+{
+  "name": "WorkFlow Updated",
+  "description": "Updated full-stack project management application",
+  "ownerId": 1
+}
+
+### Update nonexistent project
+PUT http://localhost:8080/api/projects/99999
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "description": "Test description",
+  "ownerId": 1
+}
+
+### Delete project
+DELETE http://localhost:8080/api/projects/2
+
+### Get deleted project
+GET http://localhost:8080/api/projects/2
